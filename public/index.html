@@ -163,8 +163,8 @@
 
   <style>#chat-container {
     position: fixed; /* Fixé par rapport à la fenêtre du navigateur */
-    top: 15%; /* Position à 50% du haut de la fenêtre */
-    left: 22%; /* Position à 50% du côté gauche de la fenêtre */
+    top: 79%; /* Position à 50% du haut de la fenêtre */
+    left: 9%; /* Position à 50% du côté gauche de la fenêtre */
     transform: translate(-50%, -50%); /* Décaler le conteneur pour centrer précisément */
     width: 300px; /* Largeur du conteneur */
     padding: 10px; /* Espace intérieur autour du contenu */
@@ -199,6 +199,16 @@
   }
   </style>
   <div id="game-room" class="hide-element">
+    <div id="leaderboard">
+      <h2>Leaderboard</h2>
+      <ol>
+        <li>Player 1 - 5000 points</li>
+        <li>Player 2 - 4500 points</li>
+        <li>Player 3 - 1850 points</li>
+        <!-- Add more players as needed -->
+      </ol>
+    </div>
+    
 
     <div id="chat-container">
       <div id="chat-messages" style="height: 120px; overflow-y: scroll;"></div>
