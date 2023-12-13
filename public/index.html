@@ -86,7 +86,7 @@
     </div>
   </div>
   </div>
-
+  
   <div id="main-menu" class="">
     <h1 id="blackjack-title">blackjack21<span>.io</span></h1>
     <!-- <img id="blackjack-title" src="/imgs/blackjack21io.png" alt="blackjack21.io"> -->
@@ -145,7 +145,8 @@
         <button id="btnJoin" class="play-btns noclick-nohide hide-element"><span><i class="fas fa-users"></i></span>Join Room</button>
       </div>
     </div>
-
+    
+    
     <div id="about-box">
       <strong>blackjack21.io</strong> is a free multiplayer casino game. It's an online version of the traditional blackjack played at real casinos, with some exceptions.
       <ul>
@@ -160,10 +161,51 @@
     <a id="credits" href="/credits" target="_blank">Credits</a>
   </div>
 
-
+  <style>#chat-container {
+    position: fixed; /* Fixé par rapport à la fenêtre du navigateur */
+    top: 15%; /* Position à 50% du haut de la fenêtre */
+    left: 22%; /* Position à 50% du côté gauche de la fenêtre */
+    transform: translate(-50%, -50%); /* Décaler le conteneur pour centrer précisément */
+    width: 300px; /* Largeur du conteneur */
+    padding: 10px; /* Espace intérieur autour du contenu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée pour un effet de profondeur */
+    background: #ffffff; /* Couleur d'arrière-plan */
+    border-radius: 5px; /* Bordures arrondies */
+    z-index: 1000; /* S'assurer que le conteneur est au-dessus des autres éléments */
+  }
+  
+  #chat-messages {
+    height: 120px;
+    overflow-y: auto; /* Pour permettre le défilement */
+    margin-bottom: 10px; /* Espace entre les messages et le champ de saisie */
+    background: #f9f9f9; /* Couleur d'arrière-plan pour la zone des messages */
+    padding: 5px; /* Espace intérieur pour la zone des messages */
+    border-radius: 5px; /* Bordures arrondies pour la zone des messages */
+  }
+  
+  /* Styles supplémentaires pour les boutons et le champ de saisie */
+  #chat-input, #chat-send {
+    padding: 5px 10px;
+    margin-right: 5px; /* Espace entre le champ de saisie et le bouton */
+    border: 1px solid #ddd; /* Bordure pour le champ de saisie et le bouton */
+    border-radius: 3px; /* Bordures arrondies pour le champ de saisie et le bouton */
+  }
+  
+  #chat-send {
+    cursor: pointer; /* Curseur en forme de pointeur pour indiquer qu'il s'agit d'un bouton */
+    background: #5cb85c; /* Couleur d'arrière-plan pour le bouton */
+    color: white; /* Couleur de texte pour le bouton */
+    border: none; /* Pas de bordure pour le bouton */
+  }
+  </style>
   <div id="game-room" class="hide-element">
 
-
+    <div id="chat-container">
+      <div id="chat-messages" style="height: 120px; overflow-y: scroll;"></div>
+      <input type="text" id="chat-input" placeholder="Tapez un message ici" />
+      <button id="chat-send">Envoyer</button>
+    </div>
+    
     <div id="dark-overlay"></div>
 
     <div id="table-graphics"></div>
@@ -438,9 +480,9 @@
       <div id="total-bet"></div>
     </div>
   </div>
+  
+  
 
-
-</div>
 
 <!-- PRE-LOAD DECK IMAGES -->
 <div class="hidden">
