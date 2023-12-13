@@ -4,7 +4,7 @@ const app = express();
 const server = require("http").createServer(app);
 const PORT = process.env.PORT || 3000;
 const WebSocket = require("ws")
-const WEB_URL = PORT === 3000 ? "http://localhost:3000/" : "https://blackjack-multiplayer.herokuapp.com/";
+const WEB_URL = PORT === 3000 ? "http://192.168.243.210:3000/" : "https://blackjack-multiplayer.herokuapp.com/";
 
 const wss = new WebSocket.Server({ server:server })
 
