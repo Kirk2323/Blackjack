@@ -177,6 +177,7 @@ leaveTable.addEventListener("click", (e) => {
 function playerJoin() {
   nickname = nickname.value;
   theClient.nickname = nickname.value;
+  
 
   avatar = avatar[slideIndex - 1].dataset.value;
   theClient.avatar = avatar;
@@ -1437,6 +1438,123 @@ function joinByUrl() {
     playerSlotIndex = [];
   }
 }
+
+
+
+// Fonction pour afficher un message dans le chat et le conserver
+function displayAndStoreChatMessage(message) {
+  // Créez un nouvel élément div pour le message
+  var messageDiv = document.createElement('div');
+  // Ajoutez du texte à cet élément
+  messageDiv.textContent = message;
+  // Ajoutez l'élément de message au conteneur de messages
+  var chatMessagesContainer = document.getElementById('chat-messages');
+  chatMessagesContainer.appendChild(messageDiv);
+  // Faites défiler le conteneur de messages vers le bas pour afficher le nouveau message
+  chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+  
+  // Stockez le message dans le localStorage pour le conserver
+  var storedMessages = localStorage.getItem('chatMessages') || '[]';
+  var messagesArray = JSON.parse(storedMessages);
+  messagesArray.push(message);
+  localStorage.setItem('chatMessages', JSON.stringify(messagesArray));
+}
+
+// Lorsque l'utilisateur envoie un message
+document.getElementById('chat-send').addEventListener('click', function() {
+  var message = document.getElementById('chat-input').value;
+  displayAndStoreChatMessage(message); // Affiche et conserve le message dans l'interface de chat
+  document.getElementById('chat-input').value = ''; // Effacez le champ de saisie après l'envoi
+});
+
+
+const io = require('socket.io')(server);
+
+io.on('connection', (socket) => {
+  socket.on('message', (data) => {
+    // Vérifiez le type du message
+    if (data.type === 'chat') {
+      // Redistribuez le message à tous les utilisateurs connectés
+      io.emit('message', data.message);
+    }
+    // Autres types de messages...
+  });
+});
+
+// Initialisez la connexion WebSocket côté client
+const socket = io();
+
+// Lorsque l'utilisateur envoie un message
+document.getElementById('chat-send').addEventListener('click', function() {
+  var message = document.getElementById('chat-input').value;
+
+  // Envoyez le message via WebSocket en incluant l'identifiant de l'utilisateur
+  socket.emit('message', { type: 'chat', message: message });
+
+  // Effacez le champ de saisie après l'envoi
+  document.getElementById('chat-input').value = '';
+});
+
+// Écoutez les messages provenant du serveur
+socket.on('message', (data) => {
+  // Affichez le message dans le chat en indiquant l'expéditeur (userId)
+  displayChatMessage(data.userId, data.message);
+});
+
+
+
+
+
+//------------------------
+
+
+
+
+// // Fonction pour afficher un message dans le chat et le conserver
+// function displayAndStoreChatMessage(message) {
+//   // Créez un nouvel élément div pour le message
+//   var messageDiv = document.createElement('div');
+//   // Ajoutez du texte à cet élément
+//   messageDiv.textContent = message;
+//   // Ajoutez l'élément de message au conteneur de messages
+//   var chatMessagesContainer = document.getElementById('chat-messages');
+//   chatMessagesContainer.appendChild(messageDiv);
+//   // Faites défiler le conteneur de messages vers le bas pour afficher le nouveau message
+//   chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+  
+//   // Stockez le message dans le localStorage pour le conserver
+//   var storedMessages = localStorage.getItem('chatMessages') || '[]';
+//   var messagesArray = JSON.parse(storedMessages);
+//   messagesArray.push(message);
+//   localStorage.setItem('chatMessages', JSON.stringify(messagesArray));
+// }
+
+// // Lorsque l'utilisateur envoie un message
+// document.getElementById('chat-send').addEventListener('click', function() {
+//   var message = document.getElementById('chat-input').value;
+//   displayAndStoreChatMessage(message); // Affiche et conserve le message dans l'interface de chat
+//   document.getElementById('chat-input').value = ''; // Effacez le champ de saisie après l'envoi
+// });
+
+// // Lorsque la page se charge, affichez les messages précédemment stockés
+// window.addEventListener('load', function() {
+//   var storedMessages = localStorage.getItem('chatMessages');
+//   if (storedMessages) {
+//     var messagesArray = JSON.parse(storedMessages);
+//     var chatMessagesContainer = document.getElementById('chat-messages');
+    
+//     // Vérifiez si le conteneur de messages est vide
+//     if (chatMessagesContainer.innerHTML.trim() === '') {
+//       for (var i = 0; i < messagesArray.length; i++) {
+//         displayAndStoreChatMessage(messagesArray[i]);
+//       }
+//     }
+//   }
+// });
+
+
+
+
 
 // Before player exits/resets window, terminate him from the room
 window.addEventListener("beforeunload", function () {
