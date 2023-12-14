@@ -537,6 +537,48 @@ body {
   pointer-events: none;
 }
 
+#leaderboard {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  width: 300px; /* Adjust as needed for your layout */
+  margin: 0 auto; /* Center the leaderboard in the parent element */
+}
+#leaderboard {
+  position: absolute; /* or 'fixed' if you want it to stay in place on scroll */
+  top: 18%; /* start at the vertical center */
+  left: 87%; /* align to the left side of the screen */
+  transform: translateY(-50%); /* shift upwards by half its own height to truly center it */
+  width: 250px; /* Adjust the width as necessary */
+  /* Other styles from before */
+  border-radius: 15px; /* Coins arrondis */
+}
+
+/* The rest of your styles remain the same */
+
+
+#leaderboard h2 {
+  text-align: center;
+}
+
+#leaderboard ol {
+  padding-left: 0;
+}
+
+#leaderboard li {
+  background-color: #e6e6e6;
+  padding: 5px;
+  margin-bottom: 5px;
+  list-style-type: none; /* Hides the default list item numbering */
+  border-radius: 5px;
+}
+
+/* You can add classes to your li elements to signify the top players, like: */
+.top-player {
+  font-weight: bold;
+  color: #d4af37; /* Gold color for the top player */
+}
+
 #invite-link-box {
   position: absolute;
   width: 260px;
