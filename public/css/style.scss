@@ -546,8 +546,8 @@ body {
 }
 #leaderboard {
   position: absolute; /* or 'fixed' if you want it to stay in place on scroll */
-  top: 8%; /* start at the vertical center */
-  left: 15%; /* align to the left side of the screen */
+  top: 18%; /* start at the vertical center */
+  left: 87%; /* align to the left side of the screen */
   transform: translateY(-50%); /* shift upwards by half its own height to truly center it */
   width: 250px; /* Adjust the width as necessary */
   /* Other styles from before */
